@@ -11,8 +11,13 @@ class Writer;
 class ByteStream
 {
 protected:
-  uint64_t capacity_;
+  size_t capacity_;
   // Please add any additional state to the ByteStream here, and not to the Writer and Reader interfaces.
+  std::queue<char> buffer_ {};
+  size_t pushed_ {};
+  size_t popped_ {};
+  bool closed_ { false };
+  bool error_ { false };
 
 public:
   explicit ByteStream( uint64_t capacity );
