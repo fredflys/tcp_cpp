@@ -31,4 +31,13 @@ public:
 
   // How many bytes are stored in the Reassembler itself?
   uint64_t bytes_pending() const;
+
+private:
+  std::deque<char> buffer_ {};
+  std::deque<bool> flags_ {};
+  bool buffer_sized_ { false };
+  // set end_index_ to an impossible value, tried -1 but it's not working
+  uint64_t end_index_ {1000000000000000};
+  uint64_t first_unassembled_index_ {};
+  uint64_t first_unacceptable_index_ {};
 };
